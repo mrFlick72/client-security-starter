@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+it.valeriovaudi.vauthenticator.security.clientsecuritystarter.user.VAuthenticatorUserConfig,\
+it.valeriovaudi.vauthenticator.security.clientsecuritystarter.logout.GlobalFrontChannelConfig
