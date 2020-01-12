@@ -9,4 +9,9 @@ public class VAuthenticatorUserNameResolver {
         OidcUser oidcUser = (OidcUser) authentication.getPrincipal();
         return  (String) oidcUser.getClaims().getOrDefault("email", "");
     }
+
+    public String getUserNameFor(Object principal) {
+        OidcUser oidcUser = (OidcUser) principal;
+        return (String) oidcUser.getClaims().getOrDefault("email", "");
+    }
 }
