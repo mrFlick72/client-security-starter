@@ -17,18 +17,17 @@ import java.util.stream.Collectors;
 
 public class VAuthenticatorOidcUserService implements OAuth2UserService<OidcUserRequest, OidcUser> {
 
-    private final Map<String, Class<? extends OAuth2User>> customUserTypesMapping;
+    private final CustomUserTypesOAuth2UserService customUserTypesOAuth2UserService;
     private final OidcUserService delegate;
 
-    public VAuthenticatorOidcUserService(Map<String, Class<? extends OAuth2User>> customUserTypesMapping, OidcUserService delegate) {
-        this.customUserTypesMapping = customUserTypesMapping;
+    public VAuthenticatorOidcUserService(OidcUserService delegate, CustomUserTypesOAuth2UserService customUserTypesOAuth2UserService) {
         this.delegate = delegate;
+        this.customUserTypesOAuth2UserService = customUserTypesOAuth2UserService;
     }
 
     @Override
     public OidcUser loadUser(OidcUserRequest userRequest) throws OAuth2AuthenticationException {
 
-        CustomUserTypesOAuth2UserService customUserTypesOAuth2UserService = new CustomUserTypesOAuth2UserService(customUserTypesMapping);
         delegate.setOauth2UserService(customUserTypesOAuth2UserService);
 
         // Delegate to the default implementation for loading a user
