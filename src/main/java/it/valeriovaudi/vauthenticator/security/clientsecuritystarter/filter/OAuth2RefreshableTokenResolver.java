@@ -42,6 +42,8 @@ public class OAuth2RefreshableTokenResolver implements OAuth2TokenResolver {
                         loadAuthorizedClient(currentUser.getAuthorizedClientRegistrationId(),
                                 currentUser.getName());
 
+        log.debug("getAuthorizedClientRegistrationId : " + currentUser.getAuthorizedClientRegistrationId());
+        log.debug("currentUser : " + currentUser);
         log.debug("client : " + client);
 
         if (client == null) {

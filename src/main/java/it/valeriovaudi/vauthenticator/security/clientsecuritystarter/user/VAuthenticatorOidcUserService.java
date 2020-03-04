@@ -12,7 +12,6 @@ import org.springframework.security.oauth2.core.oidc.user.OidcUserAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.Collection;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class VAuthenticatorOidcUserService implements OAuth2UserService<OidcUserRequest, OidcUser> {
