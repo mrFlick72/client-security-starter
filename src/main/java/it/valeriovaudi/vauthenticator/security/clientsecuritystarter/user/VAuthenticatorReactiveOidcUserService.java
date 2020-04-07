@@ -31,8 +31,7 @@ public class VAuthenticatorReactiveOidcUserService implements ReactiveOAuth2User
         Mono<OidcUser> delegate = this.delegate.loadUser(userRequest);
         return Mono.zip(delegate, oAuth2User, (oidcUser, oAuth2User1) -> {
             Collection<? extends GrantedAuthority> mappedAuthorities = oAuth2User1.getAuthorities().stream().map((authority) -> new OidcUserAuthority(authority.getAuthority(), oidcUser.getIdToken(), oidcUser.getUserInfo())).collect(Collectors.toList());
-            DefaultOidcUser defaultOidcUser = new DefaultOidcUser(mappedAuthorities, oidcUser.getIdToken(), oidcUser.getUserInfo());
-            return defaultOidcUser;
+            return new DefaultOidcUser(mappedAuthorities, oidcUser.getIdToken(), oidcUser.getUserInfo());
         });
     }
 }
