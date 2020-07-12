@@ -1,5 +1,7 @@
 package it.valeriovaudi.vauthenticator.security.clientsecuritystarter.logout;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.cloud.client.ConditionalOnReactiveDiscoveryEnabled;
@@ -13,6 +15,8 @@ import org.springframework.web.reactive.result.view.Rendering;
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.REACTIVE)
 public class OIDCReactiveGlobalFrontChannelLogout {
 
+    private final static Logger logger = LoggerFactory.getLogger(OIDCReactiveGlobalFrontChannelLogout.class);
+
     private final GlobalFrontChannelLogoutProvider globalFrontChannelLogoutProvider;
 
     public OIDCReactiveGlobalFrontChannelLogout(GlobalFrontChannelLogoutProvider globalFrontChannelLogoutProvider) {
@@ -23,7 +27,8 @@ public class OIDCReactiveGlobalFrontChannelLogout {
     public Rendering logout(OAuth2AuthenticationToken authentication) {
         OidcUser oidcUser = (OidcUser) authentication.getPrincipal();
         String logoutUrl = globalFrontChannelLogoutProvider.getLogoutUrl(oidcUser.getIdToken());
-
+        logger.info("logoutUrl: " + logoutUrl);
+        logger.info("idToken: " + oidcUser.getIdToken());
         return Rendering.redirectTo(logoutUrl).modelAttribute("logoutUrl", logoutUrl).build() ;
     }
 }
