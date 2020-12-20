@@ -28,7 +28,7 @@ public class GlobalFrontChannelConfig {
     @Bean("globalFrontChannelLogoutProvider")
     @ConditionalOnProperty(value = {"endSessionWithoutDiscovery"})
     public GlobalFrontChannelLogoutProvider globalFrontChannelLogoutProviderWithoutDiscovery(@Value("${postLogoutRedirectUri:''}") String postLogoutRedirectUri,
-                                                                             @Value("${oidcEndSessionUrl}") String oidcEndSessionUrl) {
+                                                                                             @Value("${oidcEndSessionUrl}") String oidcEndSessionUrl) {
         return new GlobalFrontChannelLogoutProvider(postLogoutRedirectUri,
                 null,
                 oidcEndSessionUrl,
