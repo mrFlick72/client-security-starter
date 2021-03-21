@@ -5,11 +5,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.oauth2.core.oidc.OidcIdToken;
-import org.springframework.web.client.RestOperations;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.HashMap;
 
 @Configuration
 @ComponentScan("it.valeriovaudi.vauthenticator.security.clientsecuritystarter.logout")
