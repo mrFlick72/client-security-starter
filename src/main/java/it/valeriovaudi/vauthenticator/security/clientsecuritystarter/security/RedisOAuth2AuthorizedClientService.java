@@ -49,7 +49,7 @@ public class RedisOAuth2AuthorizedClientService implements OAuth2AuthorizedClien
         ClientRegistration registration = this.clientRegistrationRepository.findByRegistrationId(clientRegistrationId);
         if (registration != null) {
             OAuth2AuthorizedClientId oAuth2AuthorizedClientId = new OAuth2AuthorizedClientId(clientRegistrationId, principalName);
-            this.authorizedClients.opsForHash().delete(oAuth2AuthorizedClientId, oAuth2AuthorizedClientId);
+            this.authorizedClients.opsForHash().delete(oAuth2AuthorizedClientId, oAuth2AuthorizedClientId.hashCode());
         }
     }
 }
