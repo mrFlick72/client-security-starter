@@ -6,6 +6,8 @@ import org.springframework.security.oauth2.client.authentication.OAuth2Authentic
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import reactor.core.publisher.Mono;
 
+import java.security.Principal;
+
 @Slf4j
 public class VAuthenticatorUserNameResolver {
 
@@ -17,6 +19,12 @@ public class VAuthenticatorUserNameResolver {
 
     public String getUserNameFor(Authentication authentication){
         OidcUser oidcUser = (OidcUser) authentication.getPrincipal();
+        log.debug("oidcUser: " + oidcUser);
+        return  (String) oidcUser.getClaims().getOrDefault(userNameSource, "");
+    }
+
+    public String getUserNameFor(Principal principal){
+        OidcUser oidcUser = (OidcUser) principal;
         log.debug("oidcUser: " + oidcUser);
         return  (String) oidcUser.getClaims().getOrDefault(userNameSource, "");
     }
