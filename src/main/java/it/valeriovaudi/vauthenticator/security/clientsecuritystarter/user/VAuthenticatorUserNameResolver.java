@@ -24,7 +24,8 @@ public class VAuthenticatorUserNameResolver {
     }
 
     public String getUserNameFor(Principal principal){
-        OidcUser oidcUser = (OidcUser) principal;
+        OAuth2AuthenticationToken token = (OAuth2AuthenticationToken) principal;
+        OidcUser oidcUser = (OidcUser) token.getPrincipal();
         log.debug("oidcUser: " + oidcUser);
         return  (String) oidcUser.getClaims().getOrDefault(userNameSource, "");
     }
