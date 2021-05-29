@@ -17,25 +17,18 @@ public class VAuthenticatorUserNameResolver {
         this.userNameSource = userNameSource;
     }
 
-    public String getUserNameFor(Authentication authentication){
-        OidcUser oidcUser = (OidcUser) authentication.getPrincipal();
-        log.debug("oidcUser: " + oidcUser);
-        return  (String) oidcUser.getClaims().getOrDefault(userNameSource, "");
+    public String getUserNameFor(Authentication authentication) {
+        return authentication.getName();
     }
 
-    public String getUserNameFor(Principal principal){
-        OAuth2AuthenticationToken token = (OAuth2AuthenticationToken) principal;
-        OidcUser oidcUser = (OidcUser) token.getPrincipal();
-        log.debug("oidcUser: " + oidcUser);
-        return  (String) oidcUser.getClaims().getOrDefault(userNameSource, "");
+    public String getUserNameFor(Principal principal) {
+        return principal.getName();
     }
 
     public Mono<String> getUserNameFor(Object principal) {
         return Mono.defer(() -> {
-            OAuth2AuthenticationToken token = (OAuth2AuthenticationToken) principal;
-            OidcUser oidcUser = (OidcUser) token.getPrincipal();
-            log.debug("oidcUser: " + oidcUser);
-            return Mono.just((String) oidcUser.getClaims().getOrDefault(userNameSource, ""));
+            Authentication token = (Authentication) principal;
+            return Mono.just(token.getName());
         });
     }
 }
