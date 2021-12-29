@@ -1,7 +1,7 @@
 name: build
 
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       tagversion:
         description: 'Tag version'
@@ -17,9 +17,7 @@ jobs:
 
       - name: Build
         run: |
-          echo "${{ inputs.tagversion }}"
-          echo $INPUT_TAGVERSION
-          echo $INPUTS_TAGVERSION
+          echo ${{ inputs.tagversion }}
 #      - name: install openjdk
 #        run: |
 #          sudo apt-get update && sudo apt-get install openjdk-11-jdk
