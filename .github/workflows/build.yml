@@ -6,6 +6,7 @@ on:
       tagVersion:
         description: 'Tag version'
         required: true
+        type: string
 
 jobs:
   provisioning:
