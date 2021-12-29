@@ -17,7 +17,7 @@ jobs:
 
       - name: Build
         run: |
-          echo ${{ inputs.tagversion }}
+          echo this is the new tag version  ${{ inputs.tagversion }}
 #      - name: install openjdk
 #        run: |
 #          sudo apt-get update && sudo apt-get install openjdk-11-jdk
