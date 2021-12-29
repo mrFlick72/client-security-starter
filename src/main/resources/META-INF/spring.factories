@@ -1,4 +1,5 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 it.valeriovaudi.vauthenticator.security.clientsecuritystarter.user.VAuthenticatorUserConfig,\
 it.valeriovaudi.vauthenticator.security.clientsecuritystarter.logout.GlobalFrontChannelConfig,\
-it.valeriovaudi.vauthenticator.security.clientsecuritystarter.filter.OAuth2ResolverConfig
+it.valeriovaudi.vauthenticator.security.clientsecuritystarter.filter.OAuth2ResolverConfig, \
+it.valeriovaudi.vauthenticator.security.clientsecuritystarter.session.management.OIDCSessionManagementConfig

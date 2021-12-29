@@ -2,8 +2,6 @@ package it.valeriovaudi.vauthenticator.security.clientsecuritystarter.user;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
-import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import reactor.core.publisher.Mono;
 
 import java.security.Principal;
