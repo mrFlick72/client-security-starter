@@ -1,4 +1,4 @@
-name: build
+name: tag a new version
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ on:
         type: string
 
 jobs:
-  provisioning:
+  build:
     runs-on: ubuntu-20.04
 
     steps:
