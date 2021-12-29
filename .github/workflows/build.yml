@@ -1,12 +1,11 @@
 name: build
 
-inputs:
-  tagVersion:
-    description: 'Tag version'
-    required: true
-
 on:
-  workflow_dispatch: { }
+  workflow_dispatch:
+    inputs:
+      tagVersion:
+        description: 'Tag version'
+        required: true
 
 jobs:
   provisioning:
