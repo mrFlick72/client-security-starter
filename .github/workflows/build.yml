@@ -8,6 +8,11 @@ on:
         required: true
         type: string
 
+      newversion:
+        description: 'Next desired version'
+        required: true
+        type: string
+
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -33,3 +38,7 @@ jobs:
         run: |
           git tag -a  ${{github.event.inputs.tagversion}} -m "tag version  ${{github.event.inputs.tagversion}}"
           git push origin  ${{github.event.inputs.tagversion}}
+
+          mvn versions:set -DnewVersion=${{github.event.inputs.newversion}}
+          git commit -am "new version release ${{github.event.inputs.newversion}}"
+          git push
