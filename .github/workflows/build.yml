@@ -16,7 +16,7 @@ jobs:
 
       - name: Build
         run: |
-          echo ${{ INPUTS.tagVersion }}
+          echo ${{ inputs.tagVersion }}
           echo $INPUT_TAGVERSION
           echo $INPUTS_TAGVERSION
 #      - name: install openjdk
