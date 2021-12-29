@@ -31,8 +31,9 @@ public class SessionManagementIFrameController {
         model.addAttribute("logout_uri", logoutUri);
         model.addAttribute("target_origin", targetOrigin);
         model.addAttribute("polling_rate", pollingRate.toMillis());
-        model.addAttribute("client_id", principal.getAuthorizedClientRegistrationId());
+        model.addAttribute("client_id", principal.getPrincipal().getAttributes().get("azp"));
         model.addAttribute("session_state", session.getAttribute("op.session_state"));
+        System.out.println(session.getAttribute("op.session_state"));
         return "session/management";
     }
 }
