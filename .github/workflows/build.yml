@@ -1,7 +1,7 @@
 name: build
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       tagversion:
         description: 'Tag version'
