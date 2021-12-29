@@ -13,21 +13,27 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: install openjdk
-        run: |
-          sudo apt-get update && sudo apt-get install openjdk-11-jdk
-          sudo update-alternatives --set java /usr/lib/jvm/java-11-openjdk-amd64/bin/java
-          sudo update-alternatives --set javac /usr/lib/jvm/java-11-openjdk-amd64/bin/javac
-          java -version
-
+        -
       - name: Build
         run: |
+          echo ${{ INPUTS.tagVersion }}
           echo $INPUT_TAGVERSION
           echo $INPUTS_TAGVERSION
-          mvn clean install -DskipTests
-
-      - name: Tag
-        run: |
-          git tag -a $INPUT_TAGVERSION -m "tag version $INPUT_TAGVERSION"
-          git push origin $INPUT_TAGVERSION
+#      - name: install openjdk
+#        run: |
+#          sudo apt-get update && sudo apt-get install openjdk-11-jdk
+#          sudo update-alternatives --set java /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+#          sudo update-alternatives --set javac /usr/lib/jvm/java-11-openjdk-amd64/bin/javac
+#          java -version
+#
+#      - name: Build
+#        run: |
+#          echo $INPUT_TAGVERSION
+#          echo $INPUTS_TAGVERSION
+#          mvn clean install -DskipTests
+#
+#      - name: Tag
+#        run: |
+#          git tag -a $INPUT_TAGVERSION -m "tag version $INPUT_TAGVERSION"
+#          git push origin $INPUT_TAGVERSION
+#
