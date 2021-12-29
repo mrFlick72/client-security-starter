@@ -17,22 +17,19 @@ jobs:
 
       - name: Build
         run: |
-          echo this is the new tag version  ${{github.event.inputs.tagversion}}
-#      - name: install openjdk
-#        run: |
-#          sudo apt-get update && sudo apt-get install openjdk-11-jdk
-#          sudo update-alternatives --set java /usr/lib/jvm/java-11-openjdk-amd64/bin/java
-#          sudo update-alternatives --set javac /usr/lib/jvm/java-11-openjdk-amd64/bin/javac
-#          java -version
-#
-#      - name: Build
-#        run: |
-#          echo $INPUT_TAGVERSION
-#          echo $INPUTS_TAGVERSION
-#          mvn clean install -DskipTests
-#
-#      - name: Tag
-#        run: |
-#          git tag -a $INPUT_TAGVERSION -m "tag version $INPUT_TAGVERSION"
-#          git push origin $INPUT_TAGVERSION
-#
+          echo this is the new tag version ${{github.event.inputs.tagversion}}
+      - name: install openjdk
+        run: |
+          sudo apt-get update && sudo apt-get install openjdk-11-jdk
+          sudo update-alternatives --set java /usr/lib/jvm/java-11-openjdk-amd64/bin/java
+          sudo update-alternatives --set javac /usr/lib/jvm/java-11-openjdk-amd64/bin/javac
+          java -version
+
+      - name: Build
+        run: |
+          mvn clean install -DskipTests
+
+      - name: Tag
+        run: |
+          git tag -a  ${{github.event.inputs.tagversion}} -m "tag version  ${{github.event.inputs.tagversion}}"
+          git push origin  ${{github.event.inputs.tagversion}}
