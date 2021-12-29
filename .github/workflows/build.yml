@@ -36,6 +36,9 @@ jobs:
 
       - name: Tag
         run: |
+          git config --global user.email "${{ secrets.GIT_EMAIL }}"
+          git config --global user.name "${{ secrets.GIT_USERNAME }}"
+
           git tag -a  ${{github.event.inputs.tagversion}} -m "tag version  ${{github.event.inputs.tagversion}}"
           git push origin  ${{github.event.inputs.tagversion}}
 
