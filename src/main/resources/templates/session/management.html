@@ -4,16 +4,17 @@
     var mes = "[[${client_id}]] [[${session_state}]]";
     var targetOrigin = "[[${target_origin}]]" // Validates origin
     var opFrameId = "op_session_management_iframe";
+    var pollingRate = [[${polling_rate}]]
     var timerID;
 
-    function check_session()   {
+    function check_session() {
         var win = window.parent.frames[opFrameId].contentWindow
         win.postMessage(mes, targetOrigin);
     }
 
     function setTimer() {
         check_session();
-        timerID = setInterval(check_session, 5 * 1000);
+        timerID = setInterval(check_session, pollingRate);
     }
 
     window.addEventListener("message", receiveMessage, false);
