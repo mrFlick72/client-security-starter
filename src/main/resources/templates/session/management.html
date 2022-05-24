@@ -21,11 +21,16 @@
 
     function receiveMessage(e) {
         if (e.origin !== targetOrigin) {
+            console.log("e.origin !== targetOrigin: " + e.origin !== targetOrigin)
+            console.log("e.origin: " + e.origin)
+            console.log("targetOrigin: " + targetOrigin)
             return;
         }
         stat = e.data;
 
         if (stat === "changed") {
+            console.log("changed")
+
             clearInterval(timerID);
             window.top.location.href = "[[${logout_uri}]]"
         }
