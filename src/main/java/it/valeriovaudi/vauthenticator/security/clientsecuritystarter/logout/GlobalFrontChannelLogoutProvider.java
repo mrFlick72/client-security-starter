@@ -27,7 +27,7 @@ public class GlobalFrontChannelLogoutProvider {
         String logoutUrl = baseLogoutUrlFromOP();
         return logoutUrl +
                 "?post_logout_redirect_uri=" + postLogoutRedirectUri +
-                "&id_token_hint=" + oidcIdToken.getTokenValue();
+                "&id_token_hint=" + Optional.ofNullable(oidcIdToken).map(idToken -> idToken.getTokenValue()).orElse("");
     }
 
     private String baseLogoutUrlFromOP() {

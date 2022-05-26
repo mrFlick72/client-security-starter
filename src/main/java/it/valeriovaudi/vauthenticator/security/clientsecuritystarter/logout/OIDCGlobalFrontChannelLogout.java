@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.Optional;
+
 @Controller
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 public class OIDCGlobalFrontChannelLogout {
@@ -19,7 +21,9 @@ public class OIDCGlobalFrontChannelLogout {
 
     @GetMapping(value = "/oidc_logout.html")
     public String logout(Model model, OAuth2AuthenticationToken authentication) {
-        OidcUser oidcUser = (OidcUser) authentication.getPrincipal();
+        OidcUser oidcUser = (OidcUser) Optional.ofNullable(authentication)
+                .map(OAuth2AuthenticationToken::getPrincipal)
+                .orElse(null);
         String logoutUrl = globalFrontChannelLogoutProvider.getLogoutUrl(oidcUser.getIdToken());
         model.addAttribute("logoutUrl", logoutUrl);
         return "redirect:" + logoutUrl;
