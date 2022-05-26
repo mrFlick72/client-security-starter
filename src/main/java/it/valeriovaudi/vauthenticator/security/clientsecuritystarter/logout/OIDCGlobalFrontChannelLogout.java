@@ -2,6 +2,7 @@ package it.valeriovaudi.vauthenticator.security.clientsecuritystarter.logout;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.core.oidc.OidcIdToken;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +25,9 @@ public class OIDCGlobalFrontChannelLogout {
         OidcUser oidcUser = (OidcUser) Optional.ofNullable(authentication)
                 .map(OAuth2AuthenticationToken::getPrincipal)
                 .orElse(null);
-        String logoutUrl = globalFrontChannelLogoutProvider.getLogoutUrl(oidcUser.getIdToken());
+
+        OidcIdToken idToken = Optional.ofNullable(oidcUser).map(user -> user.getIdToken()).orElse(null);
+        String logoutUrl = globalFrontChannelLogoutProvider.getLogoutUrl(idToken);
         model.addAttribute("logoutUrl", logoutUrl);
         return "redirect:" + logoutUrl;
     }
