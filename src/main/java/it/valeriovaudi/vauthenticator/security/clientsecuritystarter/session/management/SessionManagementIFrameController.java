@@ -12,15 +12,18 @@ import java.time.Duration;
 @Controller
 public class SessionManagementIFrameController {
 
+    private final boolean consoleDebug;
     private final String targetOrigin;
     private final String logoutUri;
     private final Duration pollingRate;
 
     public SessionManagementIFrameController(
+            @Value("${consoleDebug:false}") boolean consoleDebug,
             @Value("${vauthenticator.session-management.rp-iframe.origin}") String targetOrigin,
             @Value("${vauthenticator.session-management.rp-iframe.logout-uri}") String logoutUri,
             @Value("${vauthenticator.session-management.rp-iframe.polling-rate}") Duration pollingRate
     ) {
+        this.consoleDebug = consoleDebug;
         this.targetOrigin = targetOrigin;
         this.logoutUri = logoutUri;
         this.pollingRate = pollingRate;
@@ -33,7 +36,8 @@ public class SessionManagementIFrameController {
         model.addAttribute("polling_rate", pollingRate.toMillis());
         model.addAttribute("client_id", principal.getPrincipal().getAttributes().get("azp"));
         model.addAttribute("session_state", session.getAttribute("op.session_state"));
-        System.out.println(session.getAttribute("op.session_state"));
+
+        model.addAttribute("console_debug", consoleDebug);
         return "session/management";
     }
 }

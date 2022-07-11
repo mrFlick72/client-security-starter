@@ -20,13 +20,25 @@
     window.addEventListener("message", receiveMessage, false);
 
     function receiveMessage(e) {
+        let console_debug = [[${console_debug}]]
         if (e.origin !== targetOrigin) {
-            console.log("e.origin !== targetOrigin: " + e.origin !== targetOrigin)
-            console.log("e.origin: " + e.origin)
-            console.log("targetOrigin: " + targetOrigin)
+
+            if(console_debug){
+                console.log("e.origin !== targetOrigin: " + e.origin !== targetOrigin)
+                console.log("e.origin: " + e.origin)
+                console.log("targetOrigin: " + targetOrigin)
+            }
+
             return;
         }
         stat = e.data;
+
+        if(console_debug) {
+            console.log("e.origin !== targetOrigin: " + e.origin !== targetOrigin)
+            console.log("e.origin: " + e.origin)
+            console.log("targetOrigin: " + targetOrigin)
+            console.log("stat: " + stat)
+        }
 
         if (stat === "changed") {
             console.log("changed")
