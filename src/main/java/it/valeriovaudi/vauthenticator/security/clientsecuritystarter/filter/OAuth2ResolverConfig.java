@@ -1,5 +1,6 @@
 package it.valeriovaudi.vauthenticator.security.clientsecuritystarter.filter;
 
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration;
@@ -9,7 +10,7 @@ import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 
 import java.time.Duration;
 
-@Configuration
+@AutoConfiguration
 @AutoConfigureAfter(OAuth2ClientAutoConfiguration.class)
 public class OAuth2ResolverConfig {
 

@@ -88,7 +88,7 @@ public class OAuth2RefreshableTokenResolver implements OAuth2TokenResolver {
         LinkedMultiValueMap formParameters = new LinkedMultiValueMap<String, String>();
         formParameters.add(OAuth2ParameterNames.GRANT_TYPE, AuthorizationGrantType.REFRESH_TOKEN.getValue());
         formParameters.add(OAuth2ParameterNames.REFRESH_TOKEN, currentClient.getRefreshToken().getTokenValue());
-        formParameters.add(OAuth2ParameterNames.REDIRECT_URI, currentClient.getClientRegistration().getRedirectUriTemplate());
+        formParameters.add(OAuth2ParameterNames.REDIRECT_URI, currentClient.getClientRegistration().getRedirectUri());
 
 
         RequestEntity requestEntity = RequestEntity

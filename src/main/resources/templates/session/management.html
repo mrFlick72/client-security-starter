@@ -1,14 +1,14 @@
 <script>
     /*<![CDATA[*/
-    var stat = "unchanged";
-    var mes = "[[${client_id}]] [[${session_state}]]";
-    var targetOrigin = "[[${target_origin}]]" // Validates origin
-    var opFrameId = "op_session_management_iframe";
-    var pollingRate = [[${polling_rate}]]
-    var timerID;
+    let stat = "unchanged";
+    let mes = "[[${client_id}]] [[${session_state}]]";
+    let targetOrigin = "[[${target_origin}]]" // Validates origin
+    let opFrameId = "op_session_management_iframe";
+    let pollingRate = [[${polling_rate}]]
+    let timerID;
 
     function check_session() {
-        var win = window.parent.frames[opFrameId].contentWindow
+        let win = window.parent.frames[opFrameId].contentWindow
         win.postMessage(mes, targetOrigin);
     }
 

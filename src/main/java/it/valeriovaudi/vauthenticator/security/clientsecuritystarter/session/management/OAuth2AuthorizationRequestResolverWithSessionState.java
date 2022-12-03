@@ -1,9 +1,9 @@
 package it.valeriovaudi.vauthenticator.security.clientsecuritystarter.session.management;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestResolver;
 import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
 
-import javax.servlet.http.HttpServletRequest;
 
 public class OAuth2AuthorizationRequestResolverWithSessionState implements OAuth2AuthorizationRequestResolver {
 
